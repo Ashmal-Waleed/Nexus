@@ -11,10 +11,23 @@ import { CollaborationRequest } from '../../types';
 import { getRequestsForEntrepreneur } from '../../data/collaborationRequests';
 import { investors } from '../../data/users';
 
+
+  import MeetingCalendar from "./MeetingCalendar";
+
+
+
+
+
+
+
+
+
 export const EntrepreneurDashboard: React.FC = () => {
   const { user } = useAuth();
   const [collaborationRequests, setCollaborationRequests] = useState<CollaborationRequest[]>([]);
-  const [recommendedInvestors, setRecommendedInvestors] = useState(investors.slice(0, 3));
+  const [recommendedInvestors] = useState(investors.slice(0, 3));
+  const [showCalendar, setShowCalendar] = useState(false);
+
   
   useEffect(() => {
     if (user) {
@@ -44,6 +57,24 @@ export const EntrepreneurDashboard: React.FC = () => {
           <p className="text-gray-600">Here's what's happening with your startup today</p>
         </div>
         
+    
+
+      <Button
+        leftIcon={<Calendar size={18} />}
+        onClick={() => setShowCalendar((prev) => !prev)}
+      >
+        {showCalendar ? "Hide Calendar" : "Schedule Meeting"}
+      </Button>
+
+      {showCalendar && (
+        <div className="mt-6 rounded-xl border bg-background p-4 shadow-sm">
+          <MeetingCalendar />
+        </div>
+      )}
+
+
+
+
         <Link to="/investors">
           <Button
             leftIcon={<PlusCircle size={18} />}
@@ -52,6 +83,13 @@ export const EntrepreneurDashboard: React.FC = () => {
           </Button>
         </Link>
       </div>
+      
+
+
+
+
+
+
       
       {/* Summary cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
