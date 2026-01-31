@@ -10,9 +10,7 @@ import { useAuth } from '../../context/AuthContext';
 import { CollaborationRequest } from '../../types';
 import { getRequestsForEntrepreneur } from '../../data/collaborationRequests';
 import { investors } from '../../data/users';
-
-
-  import MeetingCalendar from "./MeetingCalendar";
+import MeetingCalendar from "./MeetingCalendar";
 
 
 
@@ -57,9 +55,8 @@ export const EntrepreneurDashboard: React.FC = () => {
           <p className="text-gray-600">Here's what's happening with your startup today</p>
         </div>
         
-    
-
-      <Button
+      <div className='flex item-right gap-4'>
+            <Button
         leftIcon={<Calendar size={18} />}
         onClick={() => setShowCalendar((prev) => !prev)}
       >
@@ -72,9 +69,6 @@ export const EntrepreneurDashboard: React.FC = () => {
         </div>
       )}
 
-
-
-
         <Link to="/investors">
           <Button
             leftIcon={<PlusCircle size={18} />}
@@ -82,6 +76,7 @@ export const EntrepreneurDashboard: React.FC = () => {
             Find Investors
           </Button>
         </Link>
+      </div>
       </div>
       
 
@@ -158,7 +153,7 @@ export const EntrepreneurDashboard: React.FC = () => {
           <Card>
             <CardHeader className="flex justify-between items-center">
               <h2 className="text-lg font-medium text-gray-900">Collaboration Requests</h2>
-              <Badge variant="primary">{pendingRequests.length} pending</Badge>
+              <Badge variant="primary">{pendingRequests.length} pending</Badge>             
             </CardHeader>
             
             <CardBody>

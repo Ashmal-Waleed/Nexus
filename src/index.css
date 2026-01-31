@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* All calendar buttons */
+.fc .fc-button {
+  background-color: #10b981; /* success-500 */
+  border: none;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Hover state */
+.fc .fc-button:hover {
+  background-color: #059669; /* success-700 */
+}
+
+/* Today button */
+.fc .fc-today-button {
+  background-color: #10b981; /* success-500 */
+}
+
+/* Prev / Next buttons */
+.fc .fc-prev-button,
+.fc .fc-next-button {
+  background-color: #10b981; /*success-500 */
+}
+
+
+
+.btn-primary {
+  @apply px-4 py-2 bg-blue-600 text-white rounded;
+}
+.btn-danger {
+  @apply px-4 py-2 bg-red-600 text-white rounded;
+}
+.btn-secondary {
+  @apply px-4 py-2 bg-gray-700 text-white rounded;
+}
+
+
+

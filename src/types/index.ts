@@ -80,5 +80,7 @@ export interface AuthContextType {
   isLoading: boolean;
 }
 
+export type DocumentStatus = "Draft" | "In Review" | "Signed";
+
 
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import DocumentChamber from './pages/documents/DocumentChamber';
+import VideoCallPage from './pages/dashboard/VideoCallPage';
 
 // Layouts
 import { DashboardLayout } from './components/layout/DashboardLayout';
@@ -60,6 +62,13 @@ function App() {
             <Route index element={<EntrepreneursPage />} />
           </Route>
           
+
+          <Route path="/video-call" element={<DashboardLayout />}>
+            <Route index element={<VideoCallPage />} />
+          </Route>
+          <Route path="/document-chamber" element={<DashboardLayout />}>
+            <Route index element={<DocumentChamber />} />
+          </Route>
           <Route path="/messages" element={<DashboardLayout />}>
             <Route index element={<MessagesPage />} />
           </Route>

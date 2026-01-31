@@ -37,14 +37,14 @@ export default function MeetingCalendar() {
   };
 
   return (
-    <div style={{ background: "#fff", padding: "16px", borderRadius: "8px" }}>
+    <div   className="absolute inset-x-20 top-60 z-10 "   style={{ background: "#fff", padding: "16px", borderRadius: "8px" }}>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="timeGridWeek"
         selectable
         select={handleDateSelect}
         events={events}
-        height="auto"
+        height="600px"
       />
     </div>
   );

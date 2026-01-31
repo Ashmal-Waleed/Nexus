@@ -10,19 +10,14 @@ import { useAuth } from '../../context/AuthContext';
 import { entrepreneurs } from '../../data/users';
 import { getRequestsFromInvestor } from '../../data/collaborationRequests';
 
-
-
- 
-
-
-
-
+import { Calendar } from "lucide-react";
+import MeetingCalendar from "./MeetingCalendar";
 
 export const InvestorDashboard: React.FC = () => {
   const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
-  
+  const [showCalendar, setShowCalendar] = useState(false);  
   if (!user) return null;
   
   // Get collaboration requests sent by this investor
@@ -64,13 +59,28 @@ export const InvestorDashboard: React.FC = () => {
           <p className="text-gray-600">Find and connect with promising entrepreneurs</p>
         </div>
         
-        <Link to="/entrepreneurs">
+      <div className='flex item-right gap-4'>
+            <Button
+        leftIcon={<Calendar size={18} />}
+        onClick={() => setShowCalendar((prev) => !prev)}
+      >
+        {showCalendar ? "Hide Calendar" : "Schedule Meeting"}
+      </Button>
+
+      {showCalendar && (
+        <div className="mt-6 rounded-xl border bg-background p-4 shadow-sm">
+          <MeetingCalendar />
+        </div>
+      )}
+
+        <Link to="/investors">
           <Button
             leftIcon={<PlusCircle size={18} />}
           >
-            View All Startups
+            Find Investors
           </Button>
         </Link>
+      </div>
       </div>
       
       {/* Filters and search */}
