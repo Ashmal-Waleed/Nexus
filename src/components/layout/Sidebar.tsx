@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { 
   Home, Building2, CircleDollarSign, Users, MessageCircle, 
-  Bell, FileText, Settings, HelpCircle, Video,  
+  Bell, FileText, Settings, HelpCircle, Video, 
   CreditCard,
   Calendar,
   CalendarDays,
 } from 'lucide-react';
+
 
 
 
@@ -100,11 +101,6 @@ export const Sidebar: React.FC = () => {
               />
             ))}
           </div>
-          
-
-
-
-
 
           <div className="mt-8 px-3">
             <h3 className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -137,7 +133,6 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
     </div>
-
 
 
 

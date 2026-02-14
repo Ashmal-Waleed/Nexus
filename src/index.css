@@ -5,7 +5,7 @@
 
 /* All calendar buttons */
 .fc .fc-button {
-  background-color: #10b981; /* success-500 */
+  background-color: #3b82f6; /* bg-primary-500 */
   border: none;
   color: #ffffff;
   font-weight: 500;
@@ -13,21 +13,38 @@
 
 /* Hover state */
 .fc .fc-button:hover {
-  background-color: #059669; /* success-700 */
+  background-color: #2563eb; /* bg-primary-700 */
 }
 
 /* Today button */
 .fc .fc-today-button {
-  background-color: #10b981; /* success-500 */
+  background-color: #3b82f6; /* bg-primary-500 */
 }
 
 /* Prev / Next buttons */
 .fc .fc-prev-button,
 .fc .fc-next-button {
-  background-color: #10b981; /*success-500 */
+  background-color: #3b82f6; /* bg-primary-500 */
 }
 
+@media screen and (max-width: 600px) {
+  
+  .fc-header-toolbar {
+    width: auto;
+    font-size: 7px;
+}
+.fc-button {
+  width: auto
+}
+.fc-view-harness {
+  display: flex;
+  width: auto;
+  height: auto !important;
+  font-size: 7px;
 
+}
+
+}
 
 .btn-primary {
   @apply px-4 py-2 bg-blue-600 text-white rounded;
