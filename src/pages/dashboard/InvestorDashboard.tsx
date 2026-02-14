@@ -10,7 +10,6 @@ import { useAuth } from '../../context/AuthContext';
 import { entrepreneurs } from '../../data/users';
 import { getRequestsFromInvestor } from '../../data/collaborationRequests';
 import { Calendar } from "lucide-react";
-import MeetingCalendar from "./MeetingCalendar";
 import WalletCard from "../../components/payments/WalletCard";
 import { DashboardTour } from '../../components/onboarding/DashboardTour';
 
@@ -18,7 +17,7 @@ export const InvestorDashboard: React.FC = () => {
   const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
-  const [showCalendar, setShowCalendar] = useState(false);  
+  const [] = useState(false);  
   if (!user) return null;
   
   // Get collaboration requests sent by this investor
@@ -60,29 +59,31 @@ export const InvestorDashboard: React.FC = () => {
           <p className="text-gray-600">Find and connect with promising entrepreneurs</p>
         </div>
         
-      <div className='flex item-right gap-4'>
+      
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center lg:justify-end gap-3">
+          
+          <Link to="/meetings" className="w-full sm:w-auto">
+            <Button
+              className="sechedule-meeting-btn w-full sm:w-auto"
+              leftIcon={<Calendar size={18} />}
+            >
+              Schedule Meeting
+            </Button>
+          </Link>
+
+          <Link to="/investors" className="w-full sm:w-auto">
+            <Button
+              className="find-investors-btn w-full sm:w-auto"
+              leftIcon={<PlusCircle size={18} />}
+            >
+              Find Investors
+            </Button>
+          </Link>
+
+          <div className="flex justify-center sm:justify-start">
             <DashboardTour />
-            <Button className='sechedule-meeting-btn'
-        leftIcon={<Calendar size={18} />}
-        onClick={() => setShowCalendar((prev) => !prev)}
-      >
-        {showCalendar ? "Hide Calendar" : "Schedule Meeting"}
-      </Button>
-
-      {showCalendar && (
-        <div className="mt-6 rounded-xl border bg-background p-4 shadow-sm">
-          <MeetingCalendar />
+          </div>
         </div>
-      )}
-
-        <Link to="/investors">
-          <Button className='find-investors-btn'
-            leftIcon={<PlusCircle size={18} />}
-          >
-            Find Investors
-          </Button>
-        </Link>
-      </div>
       </div>
 
         {/* Wallet balance card */}

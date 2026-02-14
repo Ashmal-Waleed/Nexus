@@ -74,7 +74,7 @@ export const EntrepreneurCard: React.FC<EntrepreneurCardProps> = ({
       </CardBody>
       
       {showActions && (
-        <CardFooter className="border-t border-gray-100 bg-gray-50 flex justify-between">
+        <CardFooter className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center lg:justify-end gap-3">
           <Button
             variant="outline"
             size="sm"

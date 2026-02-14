@@ -90,9 +90,9 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
       
       <CardFooter className="border-t border-gray-100 bg-gray-50">
         {request.status === 'pending' ? (
-          <div className="flex justify-between w-full">
-            <div className="space-x-2">
-              <Button
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center lg:justify-end gap-3">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center lg:justify-end gap-3">
+              <Button className="w-full sm:w-auto"
                 variant="outline"
                 size="sm"
                 leftIcon={<X size={16} />}
@@ -100,7 +100,7 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
               >
                 Decline
               </Button>
-              <Button
+              <Button className="w-full sm:w-auto"
                 variant="success"
                 size="sm"
                 leftIcon={<Check size={16} />}
@@ -110,7 +110,7 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
               </Button>
             </div>
             
-            <Button
+            <Button className="w-full sm:w-auto"
               variant="primary"
               size="sm"
               leftIcon={<MessageCircle size={16} />}
@@ -120,8 +120,8 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
             </Button>
           </div>
         ) : (
-          <div className="flex justify-between w-full">
-            <Button
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center lg:justify-end gap-3">
+            <Button className="w-full sm:w-auto"
               variant="outline"
               size="sm"
               leftIcon={<MessageCircle size={16} />}
@@ -130,7 +130,7 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
               Message
             </Button>
             
-            <Button
+            <Button className="w-full sm:w-auto"
               variant="primary"
               size="sm"
               onClick={handleViewProfile}

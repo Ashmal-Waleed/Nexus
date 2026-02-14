@@ -44,33 +44,50 @@ export const EntrepreneurDashboard: React.FC = () => {
   
   return (
 
-    <div className="space-y-6 animate-fade-in">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome, {user.name}</h1>
-          <p className="text-gray-600">Here's what's happening with your startup today</p>
-        </div>
+    <div className="flex flex-col space-y-6 animate-fade-in">
+      <div className="w-full max-w-7xl mx-auto mt-6 px-4 sm:px-6 lg:px-8">
+      
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         
-      <div className='flex item-right gap-4'>
-       
-        <Link to="/meetings">
-          <Button className='sechedule-meeting-btn'
-            leftIcon={<Calendar size={18} />}
-          >
-            Schedule Meeting
-          </Button>
-        </Link>
+   
+        <div className="text-center lg:text-left">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+            Welcome, {user.name}
+          </h1>
+          <p className="text-gray-600 text-sm sm:text-base">
+            Here's what's happening with your startup today
+          </p>
+        </div>
 
-        <Link to="/investors">
-          <Button className='find-investors-btn'
-            leftIcon={<PlusCircle size={18} />}
-          >
-            Find Investors
-          </Button>
-        </Link>
-        <DashboardTour />
+      
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center lg:justify-end gap-3">
+          
+          <Link to="/meetings" className="w-full sm:w-auto">
+            <Button
+              className="sechedule-meeting-btn w-full sm:w-auto"
+              leftIcon={<Calendar size={18} />}
+            >
+              Schedule Meeting
+            </Button>
+          </Link>
+
+          <Link to="/investors" className="w-full sm:w-auto">
+            <Button
+              className="find-investors-btn w-full sm:w-auto"
+              leftIcon={<PlusCircle size={18} />}
+            >
+              Find Investors
+            </Button>
+          </Link>
+
+          <div className="flex justify-center sm:justify-start">
+            <DashboardTour />
+          </div>
+        </div>
+
       </div>
       </div>
+
 
       {/* Wallet balance card */}
       <div className='wallet-card flex justify-start mb-4'>
@@ -85,7 +102,7 @@ export const EntrepreneurDashboard: React.FC = () => {
 
       
       {/* Summary cards */}
-      <div className=" summary-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className=" summary-cards grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <Card className="bg-primary-50 border border-primary-100">
           <CardBody>
             <div className="flex items-center">
@@ -147,36 +164,44 @@ export const EntrepreneurDashboard: React.FC = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Collaboration requests */}
-        <div className="requests-section lg:col-span-2 space-y-4">
-          <Card>
-            <CardHeader className="flex justify-between items-center">
-              <h2 className="text-lg font-medium text-gray-900">Collaboration Requests</h2>
-              <Badge variant="primary">{pendingRequests.length} pending</Badge>             
-            </CardHeader>
-            
-            <CardBody>
-              {collaborationRequests.length > 0 ? (
-                <div className="space-y-4">
-                  {collaborationRequests.map(request => (
-                    <CollaborationRequestCard
-                      key={request.id}
-                      request={request}
-                      onStatusUpdate={handleRequestStatusUpdate}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
-                    <AlertCircle size={24} className="text-gray-500" />
-                  </div>
-                  <p className="text-gray-600">No collaboration requests yet</p>
-                  <p className="text-sm text-gray-500 mt-1">When investors are interested in your startup, their requests will appear here</p>
-                </div>
-              )}
-            </CardBody>
-          </Card>
-        </div>
+ <div className="requests-section xl:col-span-2 space-y-4">
+    <Card>
+      <CardHeader className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+        <h2 className="text-base sm:text-lg font-medium text-gray-900">
+          Collaboration Requests
+        </h2>
+        <Badge variant="primary">
+          {pendingRequests.length} pending
+        </Badge>
+      </CardHeader>
+
+      <CardBody>
+        {collaborationRequests.length > 0 ? (
+          <div className="space-y-4">
+            {collaborationRequests.map(request => (
+              <CollaborationRequestCard
+                key={request.id}
+                request={request}
+                onStatusUpdate={handleRequestStatusUpdate}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8 sm:py-12">
+            <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-100 mb-4">
+              <AlertCircle size={22} className="text-gray-500" />
+            </div>
+            <p className="text-gray-600 text-sm sm:text-base">
+              No collaboration requests yet
+            </p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">
+              When investors show interest, requests will appear here
+            </p>
+          </div>
+        )}
+      </CardBody>
+    </Card>
+  </div>
         
         {/* Recommended investors */}
         <div className="recommendations-section space-y-4">

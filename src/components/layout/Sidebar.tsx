@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { 
   Home, Building2, CircleDollarSign, Users, MessageCircle, 
-  Bell, FileText, Settings, HelpCircle, Video, LayoutDashboard, 
+  Bell, FileText, Settings, HelpCircle, Video,  
   CreditCard,
   Calendar,
   CalendarDays,
@@ -79,6 +79,7 @@ export const Sidebar: React.FC = () => {
   
   const sidebarItems = user.role === 'entrepreneur' ? entrepreneurItems : investorItems;
   
+  
   // Common items at the bottom
   const commonItems = [
     { to: '/settings', icon: <Settings size={20} />, text: 'Settings' },
@@ -87,12 +88,10 @@ export const Sidebar: React.FC = () => {
   
   return (
     <div className="w-64 bg-white h-full border-r border-gray-200 hidden md:block">
-      
       <div className="h-full flex flex-col">
         <div className="flex-1 py-4 overflow-y-auto">
           <div className="px-3 space-y-1">
             {sidebarItems.map((item, index) => (
-          
               <SidebarItem
                 key={index}
                 to={item.to}
@@ -138,5 +137,9 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
     </div>
+
+
+
+
   );
 };

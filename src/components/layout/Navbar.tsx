@@ -4,7 +4,6 @@ import { Menu, X, Bell, MessageCircle, User, LogOut, Building2, CircleDollarSign
 import { useAuth } from '../../context/AuthContext';
 import { Avatar } from '../ui/Avatar';
 import { Button } from '../ui/Button';
-
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useAuth();
