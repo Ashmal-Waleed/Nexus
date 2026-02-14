@@ -4,6 +4,8 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useState } from "react";
 
+
+
 interface MeetingEvent {
   id: string;
   title: string;
@@ -36,16 +38,32 @@ export default function MeetingCalendar() {
     }
   };
 
+
+
   return (
-    <div   className="absolute inset-x-20 top-60 z-10 "   style={{ background: "#fff", padding: "16px", borderRadius: "8px" }}>
+
+  <div className=" flex flex-col justify-center w-full max-w-6xl mx-auto mt-6 px-4  animate-fade-in">
+    <div>
+      <h1 className="text-2xl font-bold text-gray-900 mb-2">Meeting Calendar</h1>
+      <p className="text-gray-600 mb-4">Schedule and manage your meetings with investors</p>
+    </div>
+    <div className="bg-white rounded-xl shadow-sm p-4">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView="timeGridWeek"
+        initialView={window.innerWidth < 768 ? "dayGridMonth" : "timeGridWeek"}
         selectable
         select={handleDateSelect}
         events={events}
-        height="600px"
+        height="auto"
+        aspectRatio={1.5}
+        headerToolbar={{
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay",
+        }}
       />
     </div>
-  );
+  </div>
+);
+
 }

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
+
 export default function VideoCall() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -49,7 +50,9 @@ export default function VideoCall() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 p-6">
+    <div className=" flex flex-col items-center gap-4 p-6">
+
+
       <video
         ref={videoRef}
         autoPlay

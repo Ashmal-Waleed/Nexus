@@ -9,9 +9,10 @@ import { EntrepreneurCard } from '../../components/entrepreneur/EntrepreneurCard
 import { useAuth } from '../../context/AuthContext';
 import { entrepreneurs } from '../../data/users';
 import { getRequestsFromInvestor } from '../../data/collaborationRequests';
-
 import { Calendar } from "lucide-react";
 import MeetingCalendar from "./MeetingCalendar";
+import WalletCard from "../../components/payments/WalletCard";
+import { DashboardTour } from '../../components/onboarding/DashboardTour';
 
 export const InvestorDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -60,7 +61,8 @@ export const InvestorDashboard: React.FC = () => {
         </div>
         
       <div className='flex item-right gap-4'>
-            <Button
+            <DashboardTour />
+            <Button className='sechedule-meeting-btn'
         leftIcon={<Calendar size={18} />}
         onClick={() => setShowCalendar((prev) => !prev)}
       >
@@ -74,7 +76,7 @@ export const InvestorDashboard: React.FC = () => {
       )}
 
         <Link to="/investors">
-          <Button
+          <Button className='find-investors-btn'
             leftIcon={<PlusCircle size={18} />}
           >
             Find Investors
@@ -82,10 +84,15 @@ export const InvestorDashboard: React.FC = () => {
         </Link>
       </div>
       </div>
+
+        {/* Wallet balance card */}
+      <div className='wallet-card flex justify-start mb-4'>
+        <WalletCard balance={5000} />
+      </div>
       
       {/* Filters and search */}
       <div className="flex flex-col md:flex-row gap-4">
-        <div className="w-full md:w-2/3">
+        <div className="search-input w-full md:w-2/3">
           <Input
             placeholder="Search startups, industries, or keywords..."
             value={searchQuery}
@@ -96,7 +103,7 @@ export const InvestorDashboard: React.FC = () => {
         </div>
         
         <div className="w-full md:w-1/3">
-          <div className="flex items-center space-x-2">
+          <div className="filters-section flex items-center space-x-2">
             <Filter size={18} className="text-gray-500" />
             <span className="text-sm font-medium text-gray-700">Filter by:</span>
             
@@ -120,7 +127,7 @@ export const InvestorDashboard: React.FC = () => {
       </div>
       
       {/* Stats summary */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="summary-cards grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="bg-primary-50 border border-primary-100">
           <CardBody>
             <div className="flex items-center">
@@ -167,7 +174,7 @@ export const InvestorDashboard: React.FC = () => {
       </div>
       
       {/* Entrepreneurs grid */}
-      <div>
+      <div className='entrepreneur-grid'>
         <Card>
           <CardHeader>
             <h2 className="text-lg font-medium text-gray-900">Featured Startups</h2>

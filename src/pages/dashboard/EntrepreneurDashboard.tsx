@@ -10,13 +10,8 @@ import { useAuth } from '../../context/AuthContext';
 import { CollaborationRequest } from '../../types';
 import { getRequestsForEntrepreneur } from '../../data/collaborationRequests';
 import { investors } from '../../data/users';
-import MeetingCalendar from "./MeetingCalendar";
-
-
-
-
-
-
+import WalletCard from "../../components/payments/WalletCard";
+import { DashboardTour } from '../../components/onboarding/DashboardTour';
 
 
 
@@ -48,6 +43,7 @@ export const EntrepreneurDashboard: React.FC = () => {
   const pendingRequests = collaborationRequests.filter(req => req.status === 'pending');
   
   return (
+
     <div className="space-y-6 animate-fade-in">
       <div className="flex justify-between items-center">
         <div>
@@ -56,27 +52,29 @@ export const EntrepreneurDashboard: React.FC = () => {
         </div>
         
       <div className='flex item-right gap-4'>
-            <Button
-        leftIcon={<Calendar size={18} />}
-        onClick={() => setShowCalendar((prev) => !prev)}
-      >
-        {showCalendar ? "Hide Calendar" : "Schedule Meeting"}
-      </Button>
-
-      {showCalendar && (
-        <div className="mt-6 rounded-xl border bg-background p-4 shadow-sm">
-          <MeetingCalendar />
-        </div>
-      )}
+       
+        <Link to="/meetings">
+          <Button className='sechedule-meeting-btn'
+            leftIcon={<Calendar size={18} />}
+          >
+            Schedule Meeting
+          </Button>
+        </Link>
 
         <Link to="/investors">
-          <Button
+          <Button className='find-investors-btn'
             leftIcon={<PlusCircle size={18} />}
           >
             Find Investors
           </Button>
         </Link>
+        <DashboardTour />
       </div>
+      </div>
+
+      {/* Wallet balance card */}
+      <div className='wallet-card flex justify-start mb-4'>
+        <WalletCard balance={5000} />
       </div>
       
 
@@ -87,7 +85,7 @@ export const EntrepreneurDashboard: React.FC = () => {
 
       
       {/* Summary cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className=" summary-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="bg-primary-50 border border-primary-100">
           <CardBody>
             <div className="flex items-center">
@@ -149,7 +147,7 @@ export const EntrepreneurDashboard: React.FC = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Collaboration requests */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="requests-section lg:col-span-2 space-y-4">
           <Card>
             <CardHeader className="flex justify-between items-center">
               <h2 className="text-lg font-medium text-gray-900">Collaboration Requests</h2>
@@ -181,7 +179,7 @@ export const EntrepreneurDashboard: React.FC = () => {
         </div>
         
         {/* Recommended investors */}
-        <div className="space-y-4">
+        <div className="recommendations-section space-y-4">
           <Card>
             <CardHeader className="flex justify-between items-center">
               <h2 className="text-lg font-medium text-gray-900">Recommended Investors</h2>

@@ -3,8 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { 
   Home, Building2, CircleDollarSign, Users, MessageCircle, 
-  Bell, FileText, Settings, HelpCircle, Video, LayoutDashboard,
+  Bell, FileText, Settings, HelpCircle, Video, LayoutDashboard, 
+  CreditCard,
+  Calendar,
+  CalendarDays,
 } from 'lucide-react';
+
 
 
 
@@ -23,6 +27,7 @@ interface SidebarItemProps {
 
 const SidebarItem: React.FC<SidebarItemProps> = ({ to, icon, text }) => {
   return (
+   
     <NavLink
       to={to}
       className={({ isActive }) => 
@@ -47,10 +52,14 @@ export const Sidebar: React.FC = () => {
   // Define sidebar items based on user role
   const entrepreneurItems = [
     { to: '/dashboard/entrepreneur', icon: <Home size={20} />, text: 'Dashboard' },
-    { to: '/profile/entrepreneur/' + user.id, icon: <Building2 size={20} />, text: 'My Startup' },
+    { to: '/profile/entrepreneur/' + user.id, icon: <Building2 size={20} />, text: 'My Startup',},
     { to: '/investors', icon: <CircleDollarSign size={20} />, text: 'Find Investors' },
+      { to: "/deals", icon: <FileText size={20} />, text: "My Deals"},
+    { to: '/payments', icon: <CreditCard size={20} />, text: 'Payments'},
     { to: '/messages', icon: <MessageCircle size={20} />, text: 'Messages' },
-    {to: "/video-call", icon: <Video size={20} />,text: "Video Call", },
+    { to: '/meetings', icon: <Calendar size={20} />, text: 'Schedule Meetings' },
+
+    {to: "/video-call", icon: <Video size={20} />,text: "Video Call",  },
     { to: '/notifications', icon: <Bell size={20} />, text: 'Notifications' },
         {to: "/documents", icon: <FileText size={20} />, text: "Document",},
   ];
@@ -60,10 +69,12 @@ export const Sidebar: React.FC = () => {
     { to: '/profile/investor/' + user.id, icon: <CircleDollarSign size={20} />, text: 'My Portfolio' },
     { to: '/entrepreneurs', icon: <Users size={20} />, text: 'Find Startups' },
     { to: '/messages', icon: <MessageCircle size={20} />, text: 'Messages' },
+    { to: '/meetings', icon: <CalendarDays size={20} />, text: 'Schedule Meetings' },
     {to: "/video-call", icon: <Video size={20} />,text: "Video Call", },
     { to: '/notifications', icon: <Bell size={20} />, text: 'Notifications' },
     {to: "/documents", icon: <FileText size={20} />, text: "Document Chamber",},
-    { to: '/deals', icon: <FileText size={20} />, text: 'Deals' },
+    { to: "/investments", icon: <CreditCard size={20} />, text: "Investments", },
+    { to: "/deals", icon: <FileText size={20} />, text: "My Deals"},
   ];
   
   const sidebarItems = user.role === 'entrepreneur' ? entrepreneurItems : investorItems;
@@ -76,10 +87,12 @@ export const Sidebar: React.FC = () => {
   
   return (
     <div className="w-64 bg-white h-full border-r border-gray-200 hidden md:block">
+      
       <div className="h-full flex flex-col">
         <div className="flex-1 py-4 overflow-y-auto">
           <div className="px-3 space-y-1">
             {sidebarItems.map((item, index) => (
+          
               <SidebarItem
                 key={index}
                 to={item.to}

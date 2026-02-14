@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './context/AuthContext';
 import DocumentChamber from './pages/documents/DocumentChamber';
 import VideoCallPage from './pages/dashboard/VideoCallPage';
+import { ProtectedRoute } from "./pages/auth/ProtectedRoute";
+import MeetingPage from './pages/dashboard/MeetingCalendar';
+
 
 // Layouts
 import { DashboardLayout } from './components/layout/DashboardLayout';
@@ -28,6 +31,10 @@ import { DocumentsPage } from './pages/documents/DocumentsPage';
 import { SettingsPage } from './pages/settings/SettingsPage';
 import { HelpPage } from './pages/help/HelpPage';
 import { DealsPage } from './pages/deals/DealsPage';
+import PaymentsPage from "./pages/payments/PaymentsPage";
+
+
+
 
 // Chat Pages
 import { ChatPage } from './pages/chat/ChatPage';
@@ -46,6 +53,22 @@ function App() {
             <Route path="entrepreneur" element={<EntrepreneurDashboard />} />
             <Route path="investor" element={<InvestorDashboard />} />
           </Route>
+
+          <Route path="/dashboard/entrepreneur" element={
+              <ProtectedRoute allowedRole="entrepreneur">
+                <EntrepreneurDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="/dashboard/investor"
+            element={
+              <ProtectedRoute allowedRole="investor">
+                <InvestorDashboard />
+              </ProtectedRoute>
+            }
+          />
+
           
           {/* Profile Routes */}
           <Route path="/profile" element={<DashboardLayout />}>
@@ -61,6 +84,13 @@ function App() {
           <Route path="/entrepreneurs" element={<DashboardLayout />}>
             <Route index element={<EntrepreneursPage />} />
           </Route>
+
+ 
+
+          <Route path="/meetings" element={<DashboardLayout />}>
+            <Route index element={<MeetingPage />} />
+          </Route>
+
           
 
           <Route path="/video-call" element={<DashboardLayout />}>
@@ -98,6 +128,11 @@ function App() {
             <Route index element={<ChatPage />} />
             <Route path=":userId" element={<ChatPage />} />
           </Route>
+
+            <Route path="/payments" element={<DashboardLayout />}>
+            <Route index element={<PaymentsPage />} />
+          </Route>
+
           
           {/* Redirect root to login */}
           <Route path="/" element={<Navigate to="/login" replace />} />

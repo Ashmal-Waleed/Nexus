@@ -7,11 +7,20 @@ import { Input } from '../../components/ui/Input';
 import { UserRole } from '../../types';
 
 export const LoginPage: React.FC = () => {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<UserRole>('entrepreneur');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  type LoginStep = "credentials" | "otp";
+  const [step, setStep] = useState<LoginStep>("credentials");
+  const [otp, setOtp] = useState("");
+
+
+
+
+
   
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -23,13 +32,31 @@ export const LoginPage: React.FC = () => {
     
     try {
       await login(email, password, role);
-      // Redirect based on user role
-      navigate(role === 'entrepreneur' ? '/dashboard/entrepreneur' : '/dashboard/investor');
+    setStep("otp");   // move to 2FA screen
+    setIsLoading(false);
+
     } catch (err) {
       setError((err as Error).message);
       setIsLoading(false);
     }
   };
+
+
+
+  const verifyOtp = () => {
+  setError(null);
+
+  if (otp === "123456") {
+    navigate(
+      role === "entrepreneur"
+        ? "/dashboard/entrepreneur"
+        : "/dashboard/investor"
+    );
+  } else {
+    setError("Invalid OTP code");
+  }
+};
+
   
   // For demo purposes, pre-filled credentials
   const fillDemoCredentials = (userRole: UserRole) => {
@@ -70,9 +97,49 @@ export const LoginPage: React.FC = () => {
               <span>{error}</span>
             </div>
           )}
+
+
+{step === "otp" ? (
+  <div className="space-y-6">
+    <div>
+      <h3 className="text-lg font-semibold text-gray-900">
+        Two-Factor Authentication
+      </h3>
+      <p className="text-sm text-gray-600">
+        Enter the 6-digit code sent to your email
+      </p>
+    </div>
+
+    <Input
+      label="OTP Code"
+      type="text"
+      value={otp}
+      onChange={(e) => setOtp(e.target.value)}
+      maxLength={6}
+      fullWidth
+    />
+
+    <Button fullWidth onClick={verifyOtp}>
+      Verify & Continue
+    </Button>
+
+    <Button
+      variant="outline"
+      fullWidth
+      onClick={() => setStep("credentials")}
+    >
+      Back to login
+    </Button>
+  </div>
+) : (
+
+
+
+  
+
           
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
+        <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 I am a
               </label>
@@ -142,7 +209,7 @@ export const LoginPage: React.FC = () => {
                   Forgot your password?
                 </a>
               </div>
-            </div>
+            </div>  
             
             <Button
               type="submit"
@@ -153,6 +220,9 @@ export const LoginPage: React.FC = () => {
               Sign in
             </Button>
           </form>
+        )}
+
+          
           
           <div className="mt-6">
             <div className="relative">

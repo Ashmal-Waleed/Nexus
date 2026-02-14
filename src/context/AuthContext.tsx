@@ -153,7 +153,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         throw new Error('User not found');
       }
       
-      const updatedUser = { ...users[userIndex], ...updates };
+      const updatedUser = { ...users[userIndex], ...updates } as User;
       users[userIndex] = updatedUser;
       
       // Update current user if it's the same user

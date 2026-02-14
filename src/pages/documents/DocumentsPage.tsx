@@ -7,6 +7,7 @@ import { Badge } from '../../components/ui/Badge';
 
 
 const documents = [
+  
   {
     id: 1,
     name: 'Pitch Deck 2024.pdf',
@@ -176,3 +177,4 @@ export const DocumentsPage: React.FC = () => {
     </div>
   );
 };
+

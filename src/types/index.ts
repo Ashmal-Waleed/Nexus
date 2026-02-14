@@ -84,3 +84,18 @@ export type DocumentStatus = "Draft" | "In Review" | "Signed";
 
 
 
+
+export type TransactionStatus = "Pending" | "Completed" | "Failed";
+
+export interface Transaction {
+  id: string;
+  type: "deposit" | "withdraw" | "transfer";
+  amount: number;
+  sender: string;
+  receiver: string;
+  status: TransactionStatus;
+  date: string;
+}
+
+
+
